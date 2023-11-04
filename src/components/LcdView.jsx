@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
 
 import { ReactNativeZoomableView } from "@openspacelabs/react-native-zoomable-view";
@@ -22,6 +22,20 @@ const LcdView = () => {
     setBytes([...newBytes]);
   };
 
+  //this useEffect is when bytesState changes and to send data
+  useEffect(() => {
+    let exportBytesAsString = bytes.join();
+    let newArray = [];
+
+    exportBytesAsString = exportBytesAsString.split(",");
+
+    for (let i = 0; i < exportBytesAsString.length; i += 5) {
+      let grupo = exportBytesAsString.slice(i, i + 5);
+      newArray.push(grupo.join(""));
+    }
+    console.log(newArray.join());
+  }, [bytes]);
+
   return (
     <View style={styles.container}>
       <View style={styles.lcdContainer}>
@@ -30,7 +44,7 @@ const LcdView = () => {
           minZoom={1}
           zoomStep={1}
           bindToBorders={true}
-          onZoomAfter={this.logOutZoomState}
+          //onZoomAfter={this.logOutZoomState}
           style={styles.zoomableView}
         >
           {bytes.map((byte, byteIndex) => (

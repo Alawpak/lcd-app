@@ -3,10 +3,9 @@ import Constants from "expo-constants";
 import { theme } from "../theme/theme";
 
 const AppBar = () => {
-  console.log(Constants.statusBarHeight);
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>AppBar</Text>
+      <Text style={styles.title}>LCD app</Text>
     </View>
   );
 };
